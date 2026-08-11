@@ -1,0 +1,14 @@
+# Requires Python >=3.11,<4.0
+
+# Data processing and Parquet file support
+pandas>=3.0.0,<4.0.0
+pyarrow>=25.0.0,<26.0.0
+
+# API framework and server
+fastapi>=0.141.1,<1.0.0          # Builds the REST API, routes, and dependencies
+uvicorn>=0.52.1,<1.0.0          # Runs the FastAPI application as an ASGI server
+python-multipart>=0.0.32,<1.0.0 # Parses OAuth2 form login data
+
+# Authentication and password security
+PyJWT>=2.13.0,<3.0.0            # Creates and validates JSON Web Tokens
+pwdlib>=0.3.0,<1.0.0            # Provides password hashing and verification
