@@ -1,7 +1,7 @@
 # Pinewood Project Data Pipeline
 
 
-## Anomalies found for pcc_residents table for Silver layer
+## Anomalies found for pcc_residents file
 
 During the Bronze-to-Silver transformation for the pcc_residents dataset, we found mixed date formats in the source data.
 
@@ -17,13 +17,13 @@ We resolved this by:
 
 This makes the date columns clean, consistent, and easier for Power BI to recognize as Date values.
 
-## Care level transformation
+## Anomalies found for Care level transformation
 
 The care_level values were inconsistent across the source files, such as AL, Assisted, and Memory Care. We cleaned and standardized them into one final label format like Assisted Living, Independent Living, and Memory Care.
 
 This keeps the dataset consistent and makes reporting easier in Power BI.
 
-## Anomalies found for pcc_care_history table for Silver layer
+## Anomalies found for pcc_care_history file
 
 During the Bronze-to-Silver transformation for the pcc_care_history dataset, the previous_level and new_level columns had inconsistent care labels across the source files.
 
@@ -41,11 +41,11 @@ This keeps the care history records clean and makes it easier to track changes i
 
 The change_date values also required cleaning because they were not always stored in the same format. Some dates were in YYYY-MM-DD and others in MM/DD/YYYY. We parsed both formats, converted valid dates to yyyy-dd-mm, and preserved invalid or blank values as missing dates where appropriate.
 
-## Anomalies found for adp_shifts table for Silver layer
+## Anomalies found for adp_shifts file
 
 The hourly_rate field contained dictionary-like values stored as strings, and the correct rate depended on each employee role. We parsed the dictionary safely and extracted the matching rate per row. We then created Standard_Hourly_Rate and Total_Labor_Cost and removed the raw hourly_rate column from the Silver output.
 
-## Employee ID mismatch between adp_shifts and pcc_incidents in the Silver layer
+## Employee ID mismatch between adp_shifts and pcc_incidents 
 
 The `employee_id` column in `adp_shifts.parquet` and the `reported_by` column in `pcc_incidents.parquet` both appear to identify employees, but their values do not match.
 
@@ -60,13 +60,13 @@ This prevents us from reliably linking incidents to employee shift records. We w
 The eight files in `data/silver` contain 80,027 rows, and no exact duplicate rows were found when metadata columns were included.
 After excluding metadata columns, 79,983 unique rows remained; only `yardi_leases.parquet` had duplicates, with 44 repeated rows reducing the file from 346 to 302 rows, duplicates were removed and only one row per duplicate was kept.
 
-## Anomaly found in yardi_units.parquet
+## Anomaly found in yardi_units file
 
 The `yardi_units.parquet` dataset contains `community_id` values representing more than 14 communities, while the expected number of communities is 14.
 
 Client clarification is required before handling the additional community IDs. Please confirm whether these IDs represent valid additional communities and should be included, or whether they are the result of an error in the source data and should be corrected or excluded.
 
-## Anomalies found in hubspot_leads
+## Anomalies found in hubspot_leads file
 
 - Lead ID `HL385264` appears twice with conflicting community, source, dates, and status values, even though `lead_id` is defined as unique.
 - Thirty-four leads have a `move_in_date` earlier than their `deposit_date`, which conflicts with the expected sales-funnel sequence and requires source-system validation. We will ask client for the correct lead if for `HL385264` and will confirm if there are cases where `move_in_date`  is earlier than their `deposit_date`.
