@@ -11,4 +11,4 @@ python-multipart>=0.0.32,<1.0.0 # Parses OAuth2 form login data
 
 # Authentication and password security
 PyJWT>=2.13.0,<3.0.0            # Creates and validates JSON Web Tokens
-pwdlib>=0.3.0,<1.0.0            # Provides password hashing and verification
+pwdlib[argon2]>=0.3.0,<1.0.0    # Provides password hashing and verification
