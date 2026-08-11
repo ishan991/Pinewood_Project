@@ -1,0 +1,1 @@
+"""Gold dimension-table pipelines."""

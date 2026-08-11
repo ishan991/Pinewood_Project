@@ -1,0 +1,1 @@
+"""Gold fact-table pipelines."""
