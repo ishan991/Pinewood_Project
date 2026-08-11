@@ -1,5 +1,11 @@
 # Pinewood Project Data Pipeline
 
+## Project Video
+
+[Watch the Project Video](https://drive.google.com/file/d/1gnlwN78Wm315g2QhLZ06sHeQDgg1YDOW/view?usp=sharing)
+
+----------------------------------------------------------------------------------------------------------------------
+
 ## Setup and Installation
 
 These instructions are for Windows PowerShell.
