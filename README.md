@@ -1,5 +1,74 @@
 # Pinewood Project Data Pipeline
 
+## Setup and Installation
+
+These instructions are for Windows PowerShell.
+
+### 1. Clone the repository
+
+```powershell
+git clone https://github.com/ishan991/Pinewood_Project.git
+cd Pinewood_Project
+```
+
+### 2. Create a virtual environment
+
+```powershell
+python -m venv .venv
+```
+
+This creates an isolated Python environment for the project.
+
+### 3. Activate the virtual environment
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+After activation, `(.venv)` should appear at the beginning of the PowerShell prompt.
+
+If PowerShell blocks the activation script, run this temporary command and try again:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+This changes the policy only for the current PowerShell session.
+
+### 4. Upgrade pip
+
+```powershell
+python -m pip install --upgrade pip
+```
+
+This updates the Python package installer inside the virtual environment.
+
+### 5. Install the project dependencies
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+This installs the packages listed in `requirements.txt`.
+
+## Running the Data Pipeline
+
+Make sure the virtual environment is active and the required raw input files are available under `data/raw/`. Then run:
+
+```powershell
+python pipeline/main.py
+```
+
+The pipeline processes the data in this order:
+
+1. Raw CSV input from `data/raw/`
+2. Bronze Parquet output in `data/bronze/`
+3. Silver transformed output in `data/silver/`
+4. Gold dimensional and fact output in `data/gold/`
+
+The Bronze, Silver, and Gold output directories are created automatically when the pipeline runs successfully.
+
+----
 
 ## Anomalies found for pcc_residents file
 
